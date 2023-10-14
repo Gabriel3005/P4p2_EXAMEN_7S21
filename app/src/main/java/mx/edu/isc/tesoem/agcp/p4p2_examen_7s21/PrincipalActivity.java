@@ -20,7 +20,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
     Button  btnant, btnsig, btncal;
 
-    int currentIndex = 0; // Agrega esta variable para rastrear el índice de la pregunta actual
+    int Indice = 0; // Agrega esta variable para rastrear el índice de la pregunta actual
     int puntaje = 0;
     int respuestasCorrectas = 0;
     ArrayList<EstructuraDatos> listadatos = new ArrayList<>();
@@ -123,13 +123,13 @@ public class PrincipalActivity extends AppCompatActivity {
                 // Verifica si se ha seleccionado una respuesta antes de avanzar
                 String respuestaSeleccionada = obtenerRespuesta();
                 if (respuestaSeleccionada != null) {
-                    listadatos.get(currentIndex).setRespuestaSeleccionada(respuestaSeleccionada);
+                    listadatos.get(Indice).setRespuestaSeleccionada(respuestaSeleccionada);
                 }
 
-                currentIndex++;
+                Indice++;
 
-                if (currentIndex < listadatos.size()) {
-                    EstructuraDatos nextQuestion = listadatos.get(currentIndex);
+                if (Indice < listadatos.size()) {
+                    EstructuraDatos nextQuestion = listadatos.get(Indice);
                     txtpregunta.setText(nextQuestion.getPregunta());
                     r1.setText(nextQuestion.getR1());
                     r2.setText(nextQuestion.getR2());
@@ -146,10 +146,10 @@ public class PrincipalActivity extends AppCompatActivity {
         btnant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currentIndex--;
+                Indice--;
 
-                if (currentIndex >= 0 && currentIndex < listadatos.size()) {
-                    EstructuraDatos previousQuestion = listadatos.get(currentIndex);
+                if (Indice >= 0 && Indice < listadatos.size()) {
+                    EstructuraDatos previousQuestion = listadatos.get(Indice);
                     txtpregunta.setText(previousQuestion.getPregunta());
                     r1.setText(previousQuestion.getR1());
                     r2.setText(previousQuestion.getR2());
@@ -168,8 +168,8 @@ public class PrincipalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Califica la pregunta actual si se ha seleccionado una respuesta
-                if (currentIndex >= 0 && currentIndex < listadatos.size()) {
-                    EstructuraDatos preguntaActual = listadatos.get(currentIndex);
+                if (Indice >= 0 && Indice < listadatos.size()) {
+                    EstructuraDatos preguntaActual = listadatos.get(Indice);
                     String respuestaSeleccionada = obtenerRespuesta();
 
                     if (respuestaSeleccionada != null) {
